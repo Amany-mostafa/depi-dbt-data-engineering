@@ -1,0 +1,54 @@
+
+version: 2
+
+models:
+  - name: dim_country
+    description: "DWH model containing distinct employee countries."
+    columns:
+      - name: country
+        description: "Distinct country name."
+        data_tests:
+          - not_null
+          - unique
+
+  - name: dim_department
+    description: "DWH model containing distinct employee departments."
+    columns:
+      - name: department
+        description: "Distinct department name."
+        data_tests:
+          - not_null
+          - unique
+
+  - name: dim_employee
+    description: "DWH employee dimension containing cleaned employee attributes."
+    columns:
+      - name: employee_id
+        description: "Unique employee identifier."
+        data_tests:
+          - not_null
+          - unique
+
+      - name: first_name
+        description: "Employee first name."
+
+      - name: last_name
+        description: "Employee last name."
+
+      - name: gender
+        description: "Employee gender."
+
+      - name: email
+        description: "Employee email address."
+
+      - name: date_of_birth
+        description: "Employee date of birth."
+
+      - name: salary
+        description: "Employee salary."
+
+      - name: department
+        description: "Employee department."
+
+      - name: country
+        description: "Employee country."

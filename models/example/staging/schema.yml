@@ -1,0 +1,41 @@
+
+version: 2
+
+models:
+  - name: stg_employees
+    description: "Staging model for employee data from the source table."
+
+    columns:
+      - name: employee_id
+        description: "Unique identifier for each employee."
+        data_tests:
+          - not_null
+          - unique
+
+     
+      - name: first_name
+        description: "Employee first name after trimming whitespace."
+        data_tests:
+          - not_null
+
+
+      - name: last_name
+        description: "Employee last name after trimming whitespace."
+
+      - name: gender
+        description: "Employee gender."
+
+      - name: email
+        description: "Employee email address."
+
+      - name: date_of_birth
+        description: "Employee date of birth."
+
+      - name: salary
+        description: "Employee salary."
+
+      - name: department
+        description: "Employee department."
+
+      - name: country
+        description: "Employee country."

@@ -1,0 +1,10 @@
+
+version: 2
+
+sources:
+  - name: sources_ods
+    database: Depi
+    schema: dbo
+    tables:
+      - name: DEPI_data
+        description: "Source employee data from SQL Server"
