@@ -1,16 +1,19 @@
-
 {{ config(materialized='view') }}
 
 SELECT
-    department,
-    country,
+    d.department,
+    c.country,
     COUNT(*) AS employee_count,
-    AVG(CAST(salary AS DECIMAL(18, 2))) AS average_salary,
-    MIN(CAST(salary AS DECIMAL(18, 2))) AS minimum_salary,
-    MAX(CAST(salary AS DECIMAL(18, 2))) AS maximum_salary
-FROM {{ ref('stg_employees') }}
-WHERE department IS NOT NULL
-  AND country IS NOT NULL
+    AVG(CAST(f.salary AS DECIMAL(18, 2))) AS average_salary,
+    MIN(CAST(f.salary AS DECIMAL(18, 2))) AS minimum_salary,
+    MAX(CAST(f.salary AS DECIMAL(18, 2))) AS maximum_salary
+FROM {{ ref('fact_employee') }} f
+LEFT JOIN {{ ref('dim_department') }} d
+    ON f.department_key = d.department_key
+LEFT JOIN {{ ref('dim_country') }} c
+    ON f.country_key = c.country_key
+WHERE d.department IS NOT NULL
+  AND c.country IS NOT NULL
 GROUP BY
-    department,
-    country
+    d.department,
+    c.country
